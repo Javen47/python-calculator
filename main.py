@@ -1,26 +1,15 @@
 from tkinter import *
+from py_expression_eval import Parser
 
 
-class BinaryExpressionTree:
-    def __init__(self):
-        self.stack = []
-
-
+# GUI
 class Window(Frame):
-
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.master = master
 
         # widget can take all of window
         self.pack(fill=BOTH, expand=1)
-
-        # create buttons
-        calculateButton = Button(self, text="Calculate", command=self.calculate)
-        calculateButton.place(x=20, y=260)
-
-        exitButton = Button(self, text="Exit", command=self.clickExitButton)
-        exitButton.place(x=100, y=260)
 
         # make labels
         expressionLabel = Label(self, text="Expression Field")
@@ -36,14 +25,40 @@ class Window(Frame):
         self.expressionEditText = Text(self, height=1, width=28)
         self.expressionEditText.place(x=25, y=40)
 
-    def clickExitButton(self):
+        # create buttons
+        calculateButton = Button(self, text="Calculate", command=self.calculate)
+        calculateButton.place(x=20, y=260)
+
+        exitButton = Button(self, text="Exit", command=self.clickExitButton)
+        exitButton.place(x=100, y=260)
+
+        operand_index = 1
+        # g = Grid().grid_location(x=50, y=260)
+        for i in range(3):
+            for j in range(3):
+                Button(self, text=operand_index, command=self.appendExpField(str(operand_index)))\
+                    .place(x=20 + j * 20, y=125 + i * 30)
+                # b.grid(g, column=j, row=i)
+
+                operand_index += 1
+
+
+    @staticmethod
+    def clickExitButton():
         exit()
 
     def calculate(self):
-        exit()
+        exp = self.expressionEditText.get("1.0", "end-1c")
+        self.expressionEditText.delete("1.0", "end-1c")
+        try:
+            answer = Parser().parse(exp).evaluate({})
+            self.expressionEditText.insert(END, answer)
+
+        except:
+            self.expressionEditText.insert(END, 'SYNTAX ERROR')
 
     def appendExpField(self, s):
-        self.expressionEditText += s
+        self.expressionEditText.insert(END, s)
 
 
 if __name__ == '__main__':
