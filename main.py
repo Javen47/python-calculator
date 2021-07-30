@@ -32,15 +32,35 @@ class Window(Frame):
         exitButton = Button(self, text="Exit", command=self.clickExitButton)
         exitButton.place(x=100, y=260)
 
-        operand_index = 1
-        # g = Grid().grid_location(x=50, y=260)
-        for i in range(3):
-            for j in range(3):
-                Button(self, text=operand_index, command=self.appendExpField(str(operand_index)))\
-                    .place(x=20 + j * 20, y=125 + i * 30)
-                # b.grid(g, column=j, row=i)
+        Button(self, text=0, command=lambda : self.appendExpField(0))\
+                    .place(x=20 + 0 * 20, y=125 + 0 * 30)
 
-                operand_index += 1
+        Button(self, text=1, command=lambda : self.appendExpField(1))\
+                    .place(x=20 + 1 * 20, y=125 + 0 * 30)
+
+        Button(self, text=2, command=lambda : self.appendExpField(2))\
+                    .place(x=20 + 2 * 20, y=125 + 0 * 30)
+
+        Button(self, text=3, command=lambda : self.appendExpField(3))\
+                    .place(x=20 + 0 * 20, y=125 + 1 * 30)
+
+        Button(self, text=4, command=lambda : self.appendExpField(4))\
+                    .place(x=20 + 1 * 20, y=125 + 1 * 30)
+
+        Button(self, text=5, command=lambda : self.appendExpField(5))\
+                    .place(x=20 + 2 * 20, y=125 + 1 * 30)
+
+        Button(self, text=6, command=lambda : self.appendExpField(6))\
+                    .place(x=20 + 0 * 20, y=125 + 2 * 30)
+
+        Button(self, text=7, command=lambda : self.appendExpField(7))\
+                    .place(x=20 + 1 * 20, y=125 + 2 * 30)
+
+        Button(self, text=8, command=lambda : self.appendExpField(8))\
+                    .place(x=20 + 2 * 20, y=125 + 2 * 30)
+
+        Button(self, text=9, command=lambda : self.appendExpField(9))\
+                    .place(x=20 + 0 * 20, y=125 + 3 * 30)
 
 
     @staticmethod
